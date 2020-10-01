@@ -23,10 +23,10 @@ print_messages = False
 # False means that it will not print any of the user messages to the terminal
 # True means that it will (at the expense of your user memebers' privacy, from a certain point of view).
 
-bot = commands.Bot(                                                     # Create a new bot
-    command_prefix=get_prefix,                                          # Set the prefix
-    description='AtlasC0R3\'s Warn-bot, written in Discord.py',         # Set a description for the bot
-    case_insensitive=True                                               # Make the commands case insensitive
+bot = commands.Bot(                                                                                                       # Create a new bot
+    command_prefix=get_prefix,                                                                                            # Set the prefix
+    description='AtlasC0R3\'s Warn-bot, written in Discord.py (https://github.com/AtlasC0R3/warnbot-discordpy/)',         # Set a description for the bot
+    case_insensitive=True                                                                                                 # Make the commands case insensitive
 )
 
 @bot.event
