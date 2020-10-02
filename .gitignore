@@ -2,3 +2,5 @@ cogs/__pycache__/warn.cpython-38.pyc
 data/warns/759543433462808586/759817226811080714.json
 data/definitely not token.txt
 data/token.txt
+warnbot-discordpy.spec
+dist/
