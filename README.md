@@ -18,10 +18,10 @@ Make sure Python is installed and that discord.py is installed through *pip*, th
 
 ## Screenshots
 <p float="left">
-  <img src="https://github.com/AtlasC0R3/warnbot-discordpy/blob/master/images/Discord_1NQSuBdf8v.png?raw=true" alt="Warn command" width="33%" />
-  <img src="https://github.com/AtlasC0R3/warnbot-discordpy/blob/master/images/Discord_31BP32nzZS.png?raw=true" alt="Warns command" width="33%" /> 
   <img src="https://github.com/AtlasC0R3/warnbot-discordpy/blob/master/images/Discord_QIASvxrVSu.png?raw=true" alt="Edit warn command" width="33%" />
+  <img src="https://github.com/AtlasC0R3/warnbot-discordpy/blob/master/images/Discord_1NQSuBdf8v.png?raw=true" alt="Warn command" width="33%" />
   <img src="https://github.com/AtlasC0R3/warnbot-discordpy/blob/master/images/Discord_SS2SCnvLxq.png?raw=true" alt="Remove warn command" width="33%" />
+  <img src="https://github.com/AtlasC0R3/warnbot-discordpy/blob/master/images/Discord_31BP32nzZS.png?raw=true" alt="Warns command" width="33%" /> 
 </p>
 
 ## Special thanks
