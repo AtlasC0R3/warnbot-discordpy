@@ -1,13 +1,13 @@
-import discord
-from discord import Member
-from discord.ext import commands
-from discord.ext.commands import has_permissions, MissingPermissions
 import json
 import random
 import ast
 from datetime import datetime
 import os
-# Imports the necessary prerequisites 
+
+import discord
+from discord import Member
+from discord.ext import commands
+from discord.ext.commands import has_permissions, MissingPermissions
 
 # These color constants are taken from discord.js library
 with open("data/embed_colors.txt") as f:
@@ -16,10 +16,10 @@ with open("data/embed_colors.txt") as f:
     color_list = [c for c in colors.values()]
 
 class Warn(commands.Cog):
-    
+
     def __init__(self, bot):
         self.bot = bot
-        
+
     # Define a new command
     @commands.command(
         name='warn',
@@ -48,14 +48,13 @@ class Warn(commands.Cog):
         if not os.path.exists("data/warns/" + str(ctx.guild.id) + "/"):
             os.makedirs("data/warns/" + str(ctx.guild.id) + "/")
             # Checks if the folder for the guild exists. If it doesn't, create it.
-            pass
         try:
-            with open("data/warns/" + str(ctx.guild.id) + "/" + str(user.id) + ".json") as f:
+            with open(f"data/warns/{str(ctx.guild.id)}/{str(user.id)}.json") as f:
                 data = json.load(f)
             # See if the user has been warned
-        except:
+        except FileNotFoundError:
             # User has not been warned yet
-            with open("data/warns/" + str(ctx.guild.id) + "/" + str(user.id) + ".json", "w+") as f:
+            with open(f"data/warns/{str(ctx.guild.id)}/{str(user.id)}.json", "w") as f:
                 data = ({
                     'offender_name':user.name,
                     'warns':1,
@@ -65,9 +64,9 @@ class Warn(commands.Cog):
                         'reason':reason,
                         'channel':str(ctx.channel.id),
                         'datetime':dt_string
-                        })
+                    })
                 }) # Creates the initial dictionary, which will then be dumped into a JSON file.
-                json.dump(data,f)
+                json.dump(data, f)
             embed = discord.Embed(
                 title=f"{user.name}'s new warn",
                 color=random.choice(color_list)
@@ -78,7 +77,7 @@ class Warn(commands.Cog):
                 url=f"https://discord.com/users/{ctx.message.author.id}/"
             )
             embed.add_field(
-                name=f"Warn 1",
+                name="Warn 1",
                 value=f"Warner: {ctx.author.name} (<@{ctx.author.id}>)\nReason: {reason}\nChannel: <#{str(ctx.channel.id)}>\nDate and Time: {dt_string}",
                 inline=True
             )
@@ -103,7 +102,7 @@ class Warn(commands.Cog):
             'datetime':dt_string
         })
         data[new_warn_amount]=new_warn
-        json.dump(data,open("data/warns/" + str(ctx.guild.id) + "/" + str(user.id) + ".json", "w"))
+        json.dump(data, open(f"data/warns/{str(ctx.guild.id)}/{str(user.id)}.json", "a"))
         # Appends to dictionary, which will then be written inside the JSON.
 
         embed = discord.Embed(
@@ -155,7 +154,7 @@ class Warn(commands.Cog):
             with open("data/warns/" + str(ctx.guild.id) + "/" + str(user.id) + ".json", "r") as f:
                 data = json.load(f)
             # See if the user has been warned
-        except:
+        except FileNotFoundError:
             # User does not have any warns.
             await ctx.send(f"{ctx.author.name}, user [{user.name} ({user.id})] does not have any warns.")
             return
@@ -198,11 +197,11 @@ class Warn(commands.Cog):
             except:
                 # User probably left
                 warner_name = warn_dict.get('warner_name')
-                
+
             warn_reason = warn_dict.get('reason')
             warn_channel = warn_dict.get('channel')
             warn_datetime = warn_dict.get('datetime')
-            
+
             embed.add_field(
                 name=f"Warn {x}",
                 value=f"Warner: {warner_name} (<@{warner_id}>)\nReason: {warn_reason}\nChannel: <#{warn_channel}>\nDate and Time: {warn_datetime}",
@@ -235,7 +234,7 @@ class Warn(commands.Cog):
             with open("data/warns/" + str(ctx.guild.id) + "/" + str(user.id) + ".json", "r") as f:
                 data = json.load(f)
             # See if the user has been warned
-        except:
+        except FileNotFoundError:
             # User does not have any warns.
             await ctx.send(f"[{ctx.author.name}], user [{user.name} ({user.id})] does not have any warns.")
             return
@@ -249,7 +248,7 @@ class Warn(commands.Cog):
             warn_warner_name = self.bot.get_user(id=warn_warner)
         except:
             # User probably left
-            warn_warner_name
+            warn_warner_name = specified_warn.get('warner_name')
 
         confirmation_embed = discord.Embed(
             title=f'{user.name}\'s warn number {warn}',
@@ -322,7 +321,7 @@ class Warn(commands.Cog):
             with open("data/warns/" + str(ctx.guild.id) + "/" + str(user.id) + ".json", "r") as f:
                 data = json.load(f)
             # See if the user has been warned
-        except:
+        except FileNotFoundError:
             # User does not have any warns.
             await ctx.send(f"[{ctx.author.name}], user [{user.name} ({user.id})] does not have any warns.")
             return
@@ -345,7 +344,7 @@ class Warn(commands.Cog):
             warn_warner_name = self.bot.get_user(id=warn_warner)
         except:
             # User probably left
-            warn_warner_name
+            warn_warner_name = specified_warn.get('warner_name')
 
         confirmation_embed = discord.Embed(
             title=f'{user.name}\'s warn number {warn}',

@@ -1,4 +1,7 @@
 debug.log
+__pycache__/
 cogs/__pycache__/
 data/warns/759543433462808586/
-data/token.txt
+*.txt
+*.pyc
+warnbot-compile/
