@@ -7,6 +7,8 @@
 # warnbot-discordpy 
 A simple Discord warn bot, written in Discord.py
 
+**NOTE: This is no longer supported, no more updates will be brought over to this. I have since made a full-fledged Discord.py bot, with a separate warn cog, and see no reason why I should carry over with this project.**
+
 ## How do I get started?
 ### The Easy Way (Windows)
 [Head over to releases](https://github.com/AtlasC0R3/warnbot-discordpy/releases/), download the \*.exe file and specify your user token, then you should be all right to go!
